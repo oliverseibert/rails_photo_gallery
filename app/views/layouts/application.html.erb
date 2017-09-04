@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsPhotoGallery</title>
+    <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.css">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Deine Fotoalben</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <!--<ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Sign In</a></li>
+          <li><a href="#">Sign Up</a></li>
+        </ul>-->
+        <p class="navbar-text pull-right">
+          <% if user_signed_in? %>
+              <strong><%= current_user.email %></strong> |
+              <%= link_to 'Persönliche Daten', edit_user_profile_path(current_user.id), :class => 'navbar-link' %> |
+              <%= link_to 'Dein Konto', edit_user_registration_path, :class => 'navbar-link' %> |
+              <%= link_to "Abmelden", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+              <%= link_to "Registrieren", new_user_registration_path, :class => 'navbar-link'  %> |
+              <%= link_to "Anmelden", new_user_session_path, :class => 'navbar-link'  %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+  <br><br><br>
+  <div class="container">
+    <% if notice %>
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= notice %>
+        </div>
+    <% end %>
+    <% if alert %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= alert %>
+        </div>
+    <% end %>
+    <%= yield %>
+  </div>
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.js"></script>
+  </body>
+</html>

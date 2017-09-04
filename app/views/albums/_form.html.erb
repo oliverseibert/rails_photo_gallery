@@ -1,0 +1,30 @@
+<%= form_with(model: album, local: true) do |form| %>
+  <% if album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% album.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Name %>
+    <%= form.text_field :title, id: :album_title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Beschreibung %>
+    <%= form.text_field :description, id: :album_description, class: 'form-control' %>
+  </div>
+  <br>
+  <div class="field">
+    <span><b>Teilen mit</b></span> <input type="text" class="form-control" placeholder="E-Mail" name="share_email">
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+<% end %>

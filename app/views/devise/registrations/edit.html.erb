@@ -1,0 +1,45 @@
+<h2>Benutzerkonto</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <label for="input_email">E-Mail:</label>
+    <%= f.email_field :email, autofocus: true, class: "form-control", id: "input_email" %>
+  </div>
+  <br>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Ausstehende E-Mail-Bestätigung für: <%= resource.unconfirmed_email %></div>
+    <br>
+  <% end %>
+
+  <div class="field">
+    <label for="input_passwort">Passwort:</label> <i>(leerlassen, wenn es nicht geändert werden soll)</i><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "input_passwort" %>
+    <% if @minimum_password_length %>
+      <em>Mindestens <%= @minimum_password_length %> Zeichen</em>
+    <% end %>
+  </div>
+    <br>
+
+  <div class="field">
+    <label for="input_passwort_wiederholen">Passwort wiederholen:</label>
+    <%= f.password_field :passwort_wiederholen, autocomplete: "off", class: "form-control", id: "input_passwort_wiederholen" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <label for="input_passwort_aktuell">Aktuelles Passwort:</label>
+    <%= f.password_field :current_password, autocomplete: "off", class: "form-control", id: "input_passwort_aktuell" %>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+<% end %>
+
+<h3>Profil löschen</h3>
+
+<p>
+  <%= button_to "Löschen", registration_path(resource_name), data: { confirm: "Profil wirklich löschen?" }, method: :delete, class: "btn btn-danger" %>
+</p>

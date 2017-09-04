@@ -1,0 +1,37 @@
+<div class="jumbotron">
+<h2><%= @album.title %></h2>
+<p><%= @album.description %></p>
+<% if @album.user_id == current_user.id %>
+  <% if @album.shares.count > 0 %>
+    <p>Geteilt mit:
+      <% @album.shares.each do |share| %>
+        <span><%= share.user.email %> </span>
+      <% end %>
+    </p>
+  <% else %>
+    <p>Album ist mit keinem geteilt!</p>
+  <% end %>
+<% end %>
+<%= link_to 'Zurück zur Alben-Liste', albums_path, :class => "btn btn-default btn-sm" %>
+<%= link_to 'Ändern', edit_album_path(@album), :class => "btn btn-primary btn-sm" %>
+</div>
+<h3>Fotos</h3>
+<p>
+  <%= link_to 'Foto hinzufügen', new_photo_path(:album_id => @album.id), :class => "btn btn-success" %>
+</p>
+<div class="row">
+  <% @album.photos.each do |photo| %>
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <div class="thumbnail">
+      <img src="<%= photo.img.url(:square) %>" alt="">
+      <div class="caption">
+        <p><%= photo.description %></p>
+        <%= link_to ' ', photo, :class => "btn btn-primary btn-sm glyphicon glyphicon-eye-open" %>
+        <%= link_to ' ', edit_photo_path(photo), :class => "btn btn-warning btn-sm glyphicon glyphicon-pencil" %>
+        <%= link_to ' ', photo, method: :delete, data: { confirm: 'Foto wirklich löschen?' }, :class => "btn btn-danger btn-sm glyphicon glyphicon-trash" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+

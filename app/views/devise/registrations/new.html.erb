@@ -1,0 +1,19 @@
+<br>
+<div class="wrapper form-signin">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <h2 class="form-signin-heading">Registrieren</h2>
+    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail" %>
+    <br>
+    <% if @minimum_password_length %>
+        <em>(Mindestens <%= @minimum_password_length %> Zeichen)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Passwort" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Passwort wiederholen" %>
+
+    <button type="sumit" class="btn btn-lg btn-primary btn-block">Registrieren</button>
+  <% end %>
+  <br>
+  <%= render "devise/shared/links" %>
+</div>
+

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= link_to 'Zurück zum Album', @photo.album, :class => "btn btn-default" %>
+</p>
+
+<p>
+  <strong>Beschreibung:</strong>
+  <%= @photo.description %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @photo.img.url %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @photo.album.description %>
+</p>
+
+<img src="<%= @photo.img.url %>" alt="">

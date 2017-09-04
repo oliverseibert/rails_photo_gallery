@@ -1,0 +1,41 @@
+<%= form_with(model: user_profile, local: true) do |form| %>
+  <% if user_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_profile.errors.count, "error") %> prohibited this user_profile from being saved:</h2>
+
+      <ul>
+      <% user_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label for="input_firstname">Vorname:</label>
+    <%= form.text_field :firstname, class: "form-control", id: "input_firstname" %>
+  </div>
+
+  <div class="field">
+    <label for="input_lastname">Nachname:</label>
+    <%= form.text_field :lastname, class: "form-control", id: "input_lastname" %>
+  </div>
+
+  <div class="field">
+    <label for="input_street">Strasse:</label>
+    <%= form.text_field :street, class: "form-control", id: "input_fstreet" %>
+  </div>
+
+  <div class="field">
+    <label for="input_city">Ort:</label>
+    <%= form.text_field :city, class: "form-control", id: "input_city" %>
+  </div>
+
+  <div class="field">
+    <label for="input_zipcode">PLZ:</label>
+    <%= form.text_field :zipcode, class: "form-control", id: "input_zipcode" %>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+<% end %>

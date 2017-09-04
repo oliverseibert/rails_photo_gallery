@@ -1,0 +1,46 @@
+<%= form_with(model: photo, local: true , multipart: true) do |form| %>
+  <% if photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+      <% photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Beschreibung %>
+    <%= form.text_field :description, id: :photo_description, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Bilddatei %>
+    <%= form.file_field :img %>
+  </div>
+
+  <div class="field" style="display: none;">
+    <%= form.label :file_url %>
+    <%= form.text_field :file_url, id: :photo_file_url, class: 'form-control' %>
+  </div>
+
+  <div class="field" style="display: none;">
+    <%= form.label :file_size %>
+    <%= form.text_field :file_size, id: :photo_file_size %>
+  </div>
+
+  <div class="field" style="display: none;">
+    <%= form.label :file_type %>
+    <%= form.text_field :file_type, id: :photo_file_type %>
+  </div>
+
+  <div class="field" style="display: none;">
+    <%= form.label :album_id %>
+    <%= form.text_field :album_id, id: :photo_album_id %>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+<% end %>
